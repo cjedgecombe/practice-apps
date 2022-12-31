@@ -31,6 +31,23 @@ const saveEntry = (term, definition) => {
   })
 }
 
+const updateEntry = (term, newTerm, newDef) => {
+
+  let query = { 'term': term };
+  let update = { 'term': newTerm, 'definition': newDef };
+
+  return new Promise((resolve, reject) => {
+    Entry.findOneAndUpdate(query, update)
+    .then(() => {
+      resolve();
+    })
+    .catch((err) => {
+      console.log('db UPDATE error', err);
+      reject(err);
+    })
+  })
+}
+
 const getEntries = () => {
 
   return new Promise((resolve, reject) => {
@@ -45,6 +62,24 @@ const getEntries = () => {
   })
 }
 
+const deleteEntry = (term) => {
+
+  let query = { 'term': term };
+
+  return new Promise((resolve, reject) => {
+    Entry.findOneAndDelete(query)
+    .then(() => {
+      resolve();
+    })
+    .catch((err) => {
+      console.log('db DELETE error', err);
+      reject(err);
+    })
+  })
+}
+
 
 exports.saveEntry = saveEntry;
 exports.getEntries = getEntries;
+exports.deleteEntry = deleteEntry;
+exports.updateEntry = updateEntry;
