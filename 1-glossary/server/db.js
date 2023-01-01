@@ -78,8 +78,28 @@ const deleteEntry = (term) => {
   })
 }
 
+const searchEntries = (term) => {
+
+  // let query = { $or: [{ 'term': /term/i }, { 'definition': /term/i }] };
+  let re = new RegExp(term, 'i');
+  let query = { $or: [{ 'term': re }, { 'definition': re }] };
+
+  return new Promise((resolve, reject) => {
+    Entry.find(query)
+    .then((results) => {
+      console.log(results);
+      resolve(results);
+    })
+    .catch((err) => {
+      console.log('db SEARCH error', err);
+      reject(err);
+    })
+  })
+}
+
 
 exports.saveEntry = saveEntry;
 exports.getEntries = getEntries;
 exports.deleteEntry = deleteEntry;
 exports.updateEntry = updateEntry;
+exports.searchEntries = searchEntries;

@@ -57,6 +57,17 @@ app.get('/entries', (req, res) => {
   })
 })
 
+app.post('/search', (req, res) => {
+  let _term = req.body.data.term;
+  db.searchEntries(_term)
+  .then((searchResults) => {
+    res.status(200).send(searchResults);
+  })
+  .catch((err) => {
+    res.status(500).end();
+  })
+})
+
 app.delete('/entries', (req, res) => {
 
   let _term = req.body.term;

@@ -2,6 +2,7 @@ import * as ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import AddEntry from './components/AddEntry.jsx';
 import EntryList from './components/EntryList.jsx';
+import SearchBar from './components/SearchBar.jsx';
 const axios = require('axios');
 
 
@@ -22,6 +23,20 @@ const App = () => {
     })
     .catch((err) => {
       console.log('client FETCH error', err);
+    })
+  }
+
+  const searchHandler = (term) => {
+    axios.post('/search', {
+      data: {
+        'term': term
+      }
+    })
+    .then((response) => {
+      setListState(response.data);
+    })
+    .catch((err) => {
+      console.log('search error', err);
     })
   }
 
@@ -83,8 +98,9 @@ const App = () => {
       <h1>Glossary</h1>
       <h3>Add an Entry</h3>
       <AddEntry termState={termState} defState={defState} setTermState={setTermState} setDefState={setDefState} submitHandler={submitHandler}/>
-      <EntryList termState={termState} defState={defState} currentList={listState} editHandler={editHandler} deleteHandler={deleteHandler}/>
       <h3>Entry Search</h3>
+      <SearchBar searchHandler={searchHandler}/>
+      <EntryList termState={termState} defState={defState} currentList={listState} editHandler={editHandler} deleteHandler={deleteHandler}/>
     </div>
   )
 }
