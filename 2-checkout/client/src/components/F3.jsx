@@ -29,7 +29,7 @@ const F3 = (props) => {
       <input type="text" className="input" id="expirationField" placeholder="Expiration Date" value={expDateState} onChange={F3TextChangeHandler}></input>
       <input type="text" className="input" id="cvvField" placeholder="CVV" value={cvvState} onChange={F3TextChangeHandler}></input>
       <input type="text" className="input" id="billingZipField" placeholder="Billing Zip Code" value={billingZipState} onChange={F3TextChangeHandler}></input>
-      <button onClick={() => {props.completePurchaseHandler()}}>Purchase</button>
+      <button onClick={() => {props.form3SubmitHandler(creditCardState, expDateState, cvvState, billingZipState)}}>Next</button>
     </div>
   )
 }

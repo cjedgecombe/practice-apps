@@ -22,7 +22,7 @@ const F1 = (props) => {
       <input type="text" className="input" id="nameField" placeholder="Name" value={nameState} onChange={F1TextChangeHandler}></input>
       <input type="text" className="input" id="emailField" placeholder="Email" value={emailState} onChange={F1TextChangeHandler}></input>
       <input type="text" className="input" id="passWordField" placeholder="Password" value={passwordState} onChange={F1TextChangeHandler}></input>
-      <button onClick={() => {props.form2RenderHandler()}}>Next</button>
+      <button onClick={() => {props.form1SubmitHandler(nameState, emailState, passwordState)}}>Next</button>
     </div>
   )
 }

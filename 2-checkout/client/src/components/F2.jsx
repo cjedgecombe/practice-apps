@@ -27,7 +27,6 @@ const F2 = (props) => {
     } else {
       setPhoneState(value);
     }
-
   }
 
   return (
@@ -39,7 +38,7 @@ const F2 = (props) => {
       <input type="text" className="input" id="stateField" placeholder="State" value={stateState} onChange={F2TextChangeHandler}></input>
       <input type="text" className="input" id="zipField" placeholder="Zip Code" value={zipState} onChange={F2TextChangeHandler}></input>
       <input type="text" className="input" id="phoneField" placeholder="Phone Number" value={phoneState} onChange={F2TextChangeHandler}></input>
-      <button onClick={() => {props.form3RenderHandler()}}>Next</button>
+      <button onClick={() => {props.form2SubmitHandler(addressStateLine1, addressStateLine2, cityState, stateState, zipState, phoneState)}}>Next</button>
     </div>
   )
 }

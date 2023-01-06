@@ -62,3 +62,11 @@ main {
 .input {
   display: block;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+}
